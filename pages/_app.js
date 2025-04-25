@@ -1,5 +1,34 @@
-import "@/styles/globals.css";
+// src/pages/_app.js
+import { useEffect } from 'react';
+import { SSRProvider } from 'react-bootstrap';
+import { DatabaseProvider } from '../src/contexts/DatabaseContext';
+import '../styles/globals.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  // Registrar service worker para funcionalidade offline
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(
+          function(registration) {
+            console.log('Service Worker registrado com sucesso:', registration.scope);
+          },
+          function(err) {
+            console.log('Falha no registro do Service Worker:', err);
+          }
+        );
+      });
+    }
+  }, []);
+
+  return (
+    <SSRProvider>
+      <DatabaseProvider>
+        <Component {...pageProps} />
+      </DatabaseProvider>
+    </SSRProvider>
+  );
 }
+
+export default MyApp;

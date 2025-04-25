@@ -1,40 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Rally Carbono Neutro - Aplicativo de Coleta de Dados
 
-## Getting Started
+Aplicativo web responsivo para coleta de dados em eventos do Rally Carbono Neutro. Funciona offline e é compatível com tablets e smartphones.
 
-First, run the development server:
+## Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js** - Framework React para renderização do lado do servidor
+- **Bootstrap** - Framework CSS para design responsivo
+- **IndexedDB** - Banco de dados do navegador para armazenamento offline
+- **Service Worker** - Para funcionalidade offline
+- **Google Sheets API** - Para sincronização de dados
+- **XLSX** - Para exportação de dados em formato Excel
+
+## Funcionalidades
+
+- Formulário para coleta de dados de veículos
+- Armazenamento offline de dados usando IndexedDB
+- Lista de veículos com funcionalidade de busca
+- Edição de dados armazenados localmente
+- Sincronização com Google Sheets
+- Exportação de dados para Excel (.xlsx)
+- Funciona offline com suporte a múltiplos usuários em diferentes dispositivos
+- Design responsivo para tablets e smartphones
+
+## Pré-requisitos
+
+- Node.js 14.x ou superior
+- Conta do Google e credenciais de service account para o Google Sheets API
+
+## Configuração
+
+1. Clone o repositório
+   ```
+   git clone https://github.com/seu-usuario/rally-carbono-neutro.git
+   cd rally-carbono-neutro
+   ```
+
+2. Instale as dependências
+   ```
+   npm install
+   ```
+
+3. Configure as variáveis de ambiente
+   - Copie o arquivo `.env.local.example` para `.env.local`
+   - Substitua o valor de `GOOGLE_SERVICE_ACCOUNT_KEY` com suas credenciais de service account
+   - Opcionalmente, adicione um ID de planilha existente em `GOOGLE_SPREADSHEET_ID`
+
+4. Execute o projeto em modo de desenvolvimento
+   ```
+   npm run dev
+   ```
+
+5. Acesse o aplicativo em `http://localhost:3000`
+
+## Estrutura do Projeto
+
+- `/public` - Arquivos estáticos e service worker
+- `/src/components` - Componentes React
+- `/src/contexts` - Contextos React para gerenciamento de estado
+- `/src/db` - Implementação do IndexedDB
+- `/src/hooks` - Hooks personalizados
+- `/src/lib` - Funções utilitárias e APIs
+- `/src/pages` - Rotas e páginas do Next.js
+- `/src/styles` - Estilos globais e específicos
+
+## Build e Deployment
+
+Para gerar uma versão de produção:
+
+```
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Para implantação em produção, recomenda-se usar serviços como Vercel ou Netlify que suportam aplicativos Next.js.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Funcionalidades Offline
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+O aplicativo utiliza um Service Worker para funcionar offline. As operações realizadas enquanto offline serão sincronizadas automaticamente quando a conexão for restabelecida.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Licença
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
 
-## Learn More
+## Manutenção e Suporte
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Para relatar problemas ou solicitar novas funcionalidades, abra uma issue no repositório do GitHub.

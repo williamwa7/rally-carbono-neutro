@@ -1,42 +1,97 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* src/styles/globals.css */
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
+  min-height: 100vh;
   padding: 0;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Estilos para telas pequenas (smartphones) */
+@media (max-width: 576px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
   }
+  
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+}
+
+/* Estilos para melhorar a experiência em dispositivos de toque */
+@media (hover: none) and (pointer: coarse) {
+  button, .btn, .form-control {
+    min-height: 44px; /* Área de toque mínima recomendada */
+  }
+  
+  .table td, .table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+/* Estilo para indicar que um elemento é clicável */
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  background-color: rgba(0,0,0,0.03);
+}
+
+/* Ajustes para modo offline */
+.offline-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Animação para indicar sincronização */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.syncing {
+  animation: pulse 1.5s infinite;
+}
+
+/* Estilo para caixa de status de sincronização */
+.sync-status {
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.sync-status.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.sync-status.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.sync-status.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
 }
