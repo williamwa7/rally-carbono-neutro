@@ -1,7 +1,7 @@
 // src/pages/form/new.js (continuação)
 import React from 'react';
-import Layout from '../../components/Layout';
-import VehicleForm from '../../components/VehicleForm';
+import Layout from '../../src/components/Layout';
+import VehicleForm from '../../src/components/VehicleForm';
 
 export default function NewVehiclePage() {
   return (
