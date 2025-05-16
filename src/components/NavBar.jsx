@@ -10,7 +10,7 @@ const NavBar = () => {
   const { texts, language, setLanguage } = useGeneralContext();
 
   return (
-    <Navbar variant="light" expand="lg" className="mb-4 bg-gradient text-white shadow custom-navbar fixed-top">
+    <Navbar variant="light" expand="lg" className="mb-4 text-white shadow custom-navbar fixed-top">
       <Container>
         <div className="col-10 col-md-12  d-flex justify-content-between">
           <Link href="/" passHref legacyBehavior>

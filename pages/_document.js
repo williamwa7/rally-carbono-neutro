@@ -7,7 +7,7 @@ class MyDocument extends Document {
       <Html lang="pt-BR">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="theme-color" content="#5eab88" />
+          <meta name="theme-color" content="#2c246f" />
           <link rel="apple-touch-icon" href="/logo192.png" />
         </Head>
         <body>
