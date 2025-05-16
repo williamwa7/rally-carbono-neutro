@@ -22,12 +22,13 @@ const ExportButton = () => {
   };
   
   return (
-    <>
+    <div className='d-flex justify-content-end col-12'>
       <Button
-        variant="outline-primary"
+        // variant="outline-success"
+        size="sm"
         disabled={exporting}
         onClick={handleExport}
-        className="d-flex align-items-center"
+        className="d-flex align-items-center custom-btn-outline"
       >
         {exporting ? (
           <>
@@ -64,12 +65,16 @@ const ExportButton = () => {
             : exportResult && exportResult.message}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseModal}>
+          <Button 
+          // variant="success" 
+          onClick={handleCloseModal}
+          className="custom-btn"
+          >
             Fechar
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

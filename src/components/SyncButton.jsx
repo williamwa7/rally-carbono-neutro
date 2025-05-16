@@ -62,7 +62,7 @@ const SyncButton = () => {
           {syncResult && syncResult.message}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseModal}>
+          <Button variant="success" onClick={handleCloseModal}>
             Fechar
           </Button>
         </Modal.Footer>

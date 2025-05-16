@@ -95,3 +95,61 @@ body {
   color: #856404;
   border: 1px solid #ffeeba;
 }
+
+.custom-navbar {
+  background-color: #2c246f !important;
+}
+
+.custom-btn {
+  background-color: #2c246f !important;
+  border-color: #2c246f !important;
+  color: #fff !important;
+}
+
+.custom-btn:hover {
+  background-color: #fff !important;
+  color: #2c246f !important;
+}
+
+/* .custom-btn:active {
+  background-color: #fff !important;
+  color: #2c246f !important;
+} */
+
+/* .custom-btn:focus {
+  background-color: #fff !important;
+  color: #2c246f !important;
+} */
+
+.custom-btn:disabled {
+  background-color: #302d4f !important;
+  border-color: #302d4f !important;
+  color: #fff !important;
+}
+
+.custom-btn-outline {
+  background-color: #fff !important;
+  color: #2c246f !important;
+  border-color: #2c246f !important;
+}
+
+.custom-btn-outline:hover {
+  background-color: #2c246f !important;
+  color: #fff !important;
+}
+
+/* .custom-btn-outline:active {
+  background-color: #2c246f !important;
+  color: #fff !important;
+} */
+
+/* .custom-btn-outline:focus {
+  background-color: #2c246f !important;
+  color: #fff !important;
+} */
+
+.custom-btn-outline:disabled {
+  background-color: #fff !important;
+  color: #302d4f !important;
+  border-color: #302d4f !important;
+}

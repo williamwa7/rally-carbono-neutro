@@ -15,6 +15,8 @@ export const DatabaseProvider = ({ children }) => {
   const [vehicles, setVehicles] = useState([]);
   const [searchResults, setSearchResults] = useState(null);
 
+  // console.log("vehicles", vehicles);
+
   // Verificar status de conexão
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
@@ -22,7 +24,7 @@ export const DatabaseProvider = ({ children }) => {
 
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-    
+
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
@@ -33,7 +35,6 @@ export const DatabaseProvider = ({ children }) => {
   useEffect(() => {
     const initializeDB = async () => {
       try {
-        setIsLoading(true);
         await db.initDB();
         await db.prePopulateDB(); // Pré-popular com dados de exemplo se necessário
         const loadedVehicles = await db.getAllVehicles();
@@ -67,13 +68,13 @@ export const DatabaseProvider = ({ children }) => {
   const saveVehicle = async (vehicleData, id = null) => {
     try {
       let savedVehicle;
-      
+
       if (id) {
         savedVehicle = await db.updateVehicle(id, vehicleData);
       } else {
         savedVehicle = await db.addVehicle(vehicleData);
       }
-      
+
       await refreshVehicles();
       return savedVehicle;
     } catch (error) {
@@ -123,27 +124,27 @@ export const DatabaseProvider = ({ children }) => {
     try {
       // Obter veículos não sincronizados
       const unsyncedVehicles = await db.getUnsyncedVehicles();
-      
+
       if (unsyncedVehicles.length === 0) {
         return { success: true, message: 'Não há dados para sincronizar' };
       }
-      
+
       // A sincronização real será feita via API, mas aqui apenas simulamos
       if (!isOnline) {
         return { success: false, message: 'Dispositivo offline. Tente novamente quando estiver conectado.' };
       }
-      
+
       // Neste ponto, enviaríamos os dados para a API
       // Se bem sucedido, marcamos como sincronizado
       const ids = unsyncedVehicles.map(v => v.id);
       await db.markAsSynced(ids);
-      
+
       // Atualizar lista de veículos após sincronização
       await refreshVehicles();
-      
-      return { 
-        success: true, 
-        message: `${unsyncedVehicles.length} veículos sincronizados com sucesso.` 
+
+      return {
+        success: true,
+        message: `${unsyncedVehicles.length} veículos sincronizados com sucesso.`
       };
     } catch (error) {
       console.error('Erro na sincronização:', error);
