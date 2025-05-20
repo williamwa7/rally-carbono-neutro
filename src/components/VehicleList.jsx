@@ -127,9 +127,9 @@ const VehicleList = () => {
                           vehicle.fuelDisplacement ||
                           vehicle.yearVehicDispl
                           ? (
-                            <span className="badge bg-success px-2 text-white material-icons">check</span>
+                            <span className="badge bg-success px-2 text-white material-icons" style={{ width: '28px', fontSize: '12px' }}>check</span>
                           ) : (
-                            <span className="badge bg-warning text-dark px-2 material-icons">schedule</span>
+                            <span className="badge bg-warning text-dark px-2 material-icons" style={{ width: '28px', fontSize: '12px' }}>schedule</span>
                           )}
                     </td>
                   </tr>
