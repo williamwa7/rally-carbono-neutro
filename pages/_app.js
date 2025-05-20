@@ -5,6 +5,7 @@ import { DatabaseProvider } from '../src/contexts/DatabaseContext';
 import { GeneralProvider } from '../src/contexts/GeneralContext';
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PreventPullToRefresh from '@/src/components/PreventPullToRefresh';
 
 function MyApp({ Component, pageProps }) {
   // Registrar service worker para funcionalidade offline
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }) {
     <SSRProvider>
       <DatabaseProvider>
         <GeneralProvider>
+          <PreventPullToRefresh />
           <Component {...pageProps} />
         </GeneralProvider>
       </DatabaseProvider>
