@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { useVehicles } from '../hooks/useVehicles';
 import { Form, Button, Card, Alert, Spinner } from 'react-bootstrap';
 import { useGeneralContext } from '../contexts/GeneralContext';
+import HomeIcon from '@mui/icons-material/Home';
+
 
 const VehicleForm = ({ id }) => {
   const router = useRouter();
@@ -189,10 +191,13 @@ const VehicleForm = ({ id }) => {
           </Alert>
         )}
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="d-flex flex-column gap-4">
 
           <Form.Group className="mb-3">
-            <Form.Label>{texts.equipe}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">sports_score</span>
+              {texts.equipe}
+            </Form.Label>
             <Form.Control
               type="text"
               name="team"
@@ -209,7 +214,10 @@ const VehicleForm = ({ id }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>{texts.piloto}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">sports_motorsports</span>
+              {texts.piloto}
+            </Form.Label>
             <Form.Control
               type="text"
               name="pilot"
@@ -225,7 +233,10 @@ const VehicleForm = ({ id }) => {
             )}
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>{texts.pais}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">flag</span>
+              {texts.pais}
+            </Form.Label>
             <Form.Control
               type="text"
               name="country"
@@ -234,13 +245,16 @@ const VehicleForm = ({ id }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>{texts.numero}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">pin</span>
+              {texts.numero}
+            </Form.Label>
             <Form.Control
               type="text"
               name="number"
               value={formData.number}
               onChange={handleChange}
-              // isInvalid={!validation.number}
+            // isInvalid={!validation.number}
 
             />
             {/* {!validation.number && (
@@ -250,7 +264,10 @@ const VehicleForm = ({ id }) => {
             )} */}
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>{texts.veiculo}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">directions_car</span>
+              {texts.veiculo}
+            </Form.Label>
             <Form.Control
               type="text"
               name="vehicle"
@@ -266,7 +283,10 @@ const VehicleForm = ({ id }) => {
             )}
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>{texts.ano}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">calendar_today</span>
+              {texts.ano}
+            </Form.Label>
             <Form.Control
               type="text"
               name="year"
@@ -283,7 +303,10 @@ const VehicleForm = ({ id }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>{texts.combustivel}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">local_gas_station</span>
+              {texts.combustivel}
+            </Form.Label>
             <Form.Control
               type="text"
               name="fuel"
@@ -293,7 +316,10 @@ const VehicleForm = ({ id }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>{texts.consumoEmProva}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">speed</span>
+              {texts.consumoEmProva}
+            </Form.Label>
             <Form.Control
               type="text"
               name="consumptionInRace"
@@ -303,7 +329,10 @@ const VehicleForm = ({ id }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>{texts.consumoEmDeslocamento}</Form.Label>
+            <Form.Label className="d-flex align-items-center text-muted fw-bold">
+              <span className="material-icons me-2">map</span>
+              {texts.consumoEmDeslocamento}
+            </Form.Label>
             <Form.Control
               type="text"
               name="displacementConsumption"
@@ -330,7 +359,10 @@ const VehicleForm = ({ id }) => {
             showDisplacement && (
               <>
                 <Form.Group className="mb-3">
-                  <Form.Label>{texts.localDeOrigem}</Form.Label>
+                  <Form.Label className="d-flex align-items-center text-muted fw-bold">
+                    <span className="material-icons me-2">location_on</span>
+                    {texts.localDeOrigem}
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="origin"
@@ -339,30 +371,42 @@ const VehicleForm = ({ id }) => {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>{texts.veiculoDeslocamento}</Form.Label>
+                  <Form.Label className="d-flex align-items-center text-muted fw-bold">
+                    <span className="material-icons me-2">airport_shuttle</span>
+                    {texts.veiculoDeslocamento}
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="vehicleDisplacement"
                     value={formData.vehicleDisplacement}
                     onChange={handleChange}
+                    placeholder={texts.veiculoDeslocamentoPlaceholder}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>{texts.combustivelDeslocamento}</Form.Label>
+                  <Form.Label className="d-flex align-items-center text-muted fw-bold">
+                    <span className="material-icons me-2">local_gas_station</span>
+                    {texts.combustivelDeslocamento}
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="fuelDisplacement"
                     value={formData.fuelDisplacement}
                     onChange={handleChange}
+                    placeholder={texts.combustivelDeslocamentoPlaceholder}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>{texts.anoVeiculoDeslocamento}</Form.Label>
+                  <Form.Label className="d-flex align-items-center text-muted fw-bold">
+                    <span className="material-icons me-2">calendar_today</span>
+                    {texts.anoVeiculoDeslocamento}
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="yearVehicDispl"
                     value={formData.yearVehicDispl}
                     onChange={handleChange}
+                    placeholder={texts.anoVeiculoDeslocamentoPlaceholder}
                   />
                 </Form.Group>
               </>

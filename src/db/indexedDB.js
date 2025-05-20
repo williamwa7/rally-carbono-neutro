@@ -21,7 +21,7 @@
 //       // Criar object store para veículos se não existir
 //       if (!db.objectStoreNames.contains(VEHICLES_STORE)) {
 //         const vehiclesStore = db.createObjectStore(VEHICLES_STORE, { keyPath: 'id', autoIncrement: true });
-        
+
 //         // Criar índices para busca
 //         vehiclesStore.createIndex('name', 'name', { unique: false });
 //         vehiclesStore.createIndex('number', 'number', { unique: false });
@@ -56,7 +56,7 @@
 //   return new Promise((resolve, reject) => {
 //     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
 //     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
 //     // Adicionar UUID para identificação única entre dispositivos
 //     const vehicleWithId = {
 //       ...vehicleData,
@@ -64,17 +64,17 @@
 //       updatedAt: new Date().toISOString(),
 //       synced: false
 //     };
-    
+
 //     const request = store.add(vehicleWithId);
-    
+
 //     request.onsuccess = (event) => {
 //       resolve({ ...vehicleWithId, id: event.target.result });
 //     };
-    
+
 //     request.onerror = (event) => {
 //       reject(`Erro ao adicionar veículo: ${event.target.error}`);
 //     };
-    
+
 //     transaction.oncomplete = () => {
 //       db.close();
 //     };
@@ -87,17 +87,17 @@
 //   return new Promise((resolve, reject) => {
 //     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
 //     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
 //     // Primeiro, buscar o veículo atual
 //     const getRequest = store.get(id);
-    
+
 //     getRequest.onsuccess = (event) => {
 //       const existingVehicle = event.target.result;
 //       if (!existingVehicle) {
 //         reject(`Veículo com ID ${id} não encontrado`);
 //         return;
 //       }
-      
+
 //       // Atualizar os dados
 //       const updatedVehicle = {
 //         ...existingVehicle,
@@ -105,22 +105,22 @@
 //         updatedAt: new Date().toISOString(),
 //         synced: false
 //       };
-      
+
 //       const updateRequest = store.put(updatedVehicle);
-      
+
 //       updateRequest.onsuccess = () => {
 //         resolve(updatedVehicle);
 //       };
-      
+
 //       updateRequest.onerror = (event) => {
 //         reject(`Erro ao atualizar veículo: ${event.target.error}`);
 //       };
 //     };
-    
+
 //     getRequest.onerror = (event) => {
 //       reject(`Erro ao buscar veículo: ${event.target.error}`);
 //     };
-    
+
 //     transaction.oncomplete = () => {
 //       db.close();
 //     };
@@ -134,15 +134,15 @@
 //     const transaction = db.transaction([VEHICLES_STORE], 'readonly');
 //     const store = transaction.objectStore(VEHICLES_STORE);
 //     const request = store.getAll();
-    
+
 //     request.onsuccess = (event) => {
 //       resolve(event.target.result);
 //     };
-    
+
 //     request.onerror = (event) => {
 //       reject(`Erro ao buscar veículos: ${event.target.error}`);
 //     };
-    
+
 //     transaction.oncomplete = () => {
 //       db.close();
 //     };
@@ -156,15 +156,15 @@
 //     const transaction = db.transaction([VEHICLES_STORE], 'readonly');
 //     const store = transaction.objectStore(VEHICLES_STORE);
 //     const request = store.get(id);
-    
+
 //     request.onsuccess = (event) => {
 //       resolve(event.target.result);
 //     };
-    
+
 //     request.onerror = (event) => {
 //       reject(`Erro ao buscar veículo: ${event.target.error}`);
 //     };
-    
+
 //     transaction.oncomplete = () => {
 //       db.close();
 //     };
@@ -174,7 +174,7 @@
 // // Função para buscar veículos por critérios
 // export const searchVehicles = async (criteria) => {
 //   const allVehicles = await getAllVehicles();
-  
+
 //   // Filtrar veículos de acordo com os critérios
 //   return allVehicles.filter(vehicle => {
 //     // Verificar correspondência em cada critério fornecido
@@ -182,7 +182,7 @@
 //       if (value && vehicle[key]) {
 //         const vehicleValue = vehicle[key].toString().toLowerCase();
 //         const searchValue = value.toString().toLowerCase();
-        
+
 //         if (!vehicleValue.includes(searchValue)) {
 //           return false;
 //         }
@@ -198,19 +198,19 @@
 //   return new Promise((resolve, reject) => {
 //     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
 //     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
 //     let completed = 0;
 //     let errors = [];
-    
+
 //     ids.forEach(id => {
 //       const getRequest = store.get(id);
-      
+
 //       getRequest.onsuccess = (event) => {
 //         const vehicle = event.target.result;
 //         if (vehicle) {
 //           vehicle.synced = true;
 //           const updateRequest = store.put(vehicle);
-          
+
 //           updateRequest.onsuccess = () => {
 //             completed++;
 //             if (completed === ids.length) {
@@ -221,7 +221,7 @@
 //               }
 //             }
 //           };
-          
+
 //           updateRequest.onerror = (event) => {
 //             errors.push(`ID ${id}: ${event.target.error}`);
 //             completed++;
@@ -241,7 +241,7 @@
 //           }
 //         }
 //       };
-      
+
 //       getRequest.onerror = (event) => {
 //         errors.push(`ID ${id}: ${event.target.error}`);
 //         completed++;
@@ -250,7 +250,7 @@
 //         }
 //       };
 //     });
-    
+
 //     transaction.oncomplete = () => {
 //       db.close();
 //     };
@@ -267,13 +267,13 @@
 // const getDeviceId = () => {
 //   // Verificar se já existe um ID de dispositivo armazenado
 //   let deviceId = localStorage.getItem('deviceId');
-  
+
 //   if (!deviceId) {
 //     // Gerar um novo ID de dispositivo usando timestamp + random
 //     deviceId = `device_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 //     localStorage.setItem('deviceId', deviceId);
 //   }
-  
+
 //   return deviceId;
 // };
 
@@ -284,15 +284,15 @@
 //     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
 //     const store = transaction.objectStore(VEHICLES_STORE);
 //     const request = store.delete(id);
-    
+
 //     request.onsuccess = () => {
 //       resolve(true);
 //     };
-    
+
 //     request.onerror = (event) => {
 //       reject(`Erro ao excluir veículo: ${event.target.error}`);
 //     };
-    
+
 //     transaction.oncomplete = () => {
 //       db.close();
 //     };
@@ -308,9 +308,9 @@
 //     { vehicle: "Electric Racer", number: "404", team: "Equipe Delta", pilot: "Ana Pereira" },
 //     { vehicle: "Hybrid Speed", number: "505", team: "Equipe Alpha", pilot: "Carlos Mendes" }
 //   ];
-  
+
 //   const existingVehicles = await getAllVehicles();
-  
+
 //   // Só pré-popular se não houver veículos cadastrados
 //   if (existingVehicles.length === 0) {
 //     for (const vehicle of sampleVehicles) {
@@ -345,7 +345,7 @@ export const initDB = () => {
       // Criar object store para veículos se não existir
       if (!db.objectStoreNames.contains(VEHICLES_STORE)) {
         const vehiclesStore = db.createObjectStore(VEHICLES_STORE, { keyPath: 'id', autoIncrement: true });
-        
+
         // Criar índices para busca
         vehiclesStore.createIndex('name', 'name', { unique: false });
         vehiclesStore.createIndex('number', 'number', { unique: false });
@@ -380,7 +380,7 @@ export const addVehicle = async (vehicleData) => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
     // Adicionar UUID para identificação única entre dispositivos
     const vehicleWithId = {
       ...vehicleData,
@@ -388,17 +388,17 @@ export const addVehicle = async (vehicleData) => {
       updatedAt: new Date().toISOString(),
       synced: false
     };
-    
+
     const request = store.add(vehicleWithId);
-    
+
     request.onsuccess = (event) => {
       resolve({ ...vehicleWithId, id: event.target.result });
     };
-    
+
     request.onerror = (event) => {
       reject(`Erro ao adicionar veículo: ${event.target.error}`);
     };
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -411,11 +411,11 @@ export const addMultipleVehicles = async (vehiclesData) => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
     let completedCount = 0;
     let successCount = 0;
     const errors = [];
-    
+
     // Para cada veículo nos dados
     vehiclesData.forEach((vehicleData, index) => {
       // Adicionar UUID para identificação única entre dispositivos
@@ -425,13 +425,13 @@ export const addMultipleVehicles = async (vehiclesData) => {
         updatedAt: new Date().toISOString(),
         synced: false
       };
-      
+
       const request = store.add(vehicleWithId);
-      
+
       request.onsuccess = () => {
         successCount++;
         completedCount++;
-        
+
         // Verificar se todos foram processados
         if (completedCount === vehiclesData.length) {
           resolve({
@@ -441,15 +441,15 @@ export const addMultipleVehicles = async (vehiclesData) => {
           });
         }
       };
-      
+
       request.onerror = (event) => {
         errors.push({
           index: index,
           error: `Erro ao adicionar veículo: ${event.target.error}`
         });
-        
+
         completedCount++;
-        
+
         // Verificar se todos foram processados
         if (completedCount === vehiclesData.length) {
           resolve({
@@ -460,11 +460,11 @@ export const addMultipleVehicles = async (vehiclesData) => {
         }
       };
     });
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
-    
+
     // Se não houver veículos para adicionar
     if (vehiclesData.length === 0) {
       resolve({
@@ -482,17 +482,17 @@ export const updateVehicle = async (id, vehicleData) => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
     // Primeiro, buscar o veículo atual
     const getRequest = store.get(id);
-    
+
     getRequest.onsuccess = (event) => {
       const existingVehicle = event.target.result;
       if (!existingVehicle) {
         reject(`Veículo com ID ${id} não encontrado`);
         return;
       }
-      
+
       // Atualizar os dados
       const updatedVehicle = {
         ...existingVehicle,
@@ -500,22 +500,22 @@ export const updateVehicle = async (id, vehicleData) => {
         updatedAt: new Date().toISOString(),
         synced: false
       };
-      
+
       const updateRequest = store.put(updatedVehicle);
-      
+
       updateRequest.onsuccess = () => {
         resolve(updatedVehicle);
       };
-      
+
       updateRequest.onerror = (event) => {
         reject(`Erro ao atualizar veículo: ${event.target.error}`);
       };
     };
-    
+
     getRequest.onerror = (event) => {
       reject(`Erro ao buscar veículo: ${event.target.error}`);
     };
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -529,15 +529,15 @@ export const getAllVehicles = async () => {
     const transaction = db.transaction([VEHICLES_STORE], 'readonly');
     const store = transaction.objectStore(VEHICLES_STORE);
     const request = store.getAll();
-    
+
     request.onsuccess = (event) => {
       resolve(event.target.result);
     };
-    
+
     request.onerror = (event) => {
       reject(`Erro ao buscar veículos: ${event.target.error}`);
     };
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -551,15 +551,15 @@ export const getVehicleById = async (id) => {
     const transaction = db.transaction([VEHICLES_STORE], 'readonly');
     const store = transaction.objectStore(VEHICLES_STORE);
     const request = store.get(id);
-    
+
     request.onsuccess = (event) => {
       resolve(event.target.result);
     };
-    
+
     request.onerror = (event) => {
       reject(`Erro ao buscar veículo: ${event.target.error}`);
     };
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -569,7 +569,7 @@ export const getVehicleById = async (id) => {
 // Função para buscar veículos por critérios
 export const searchVehicles = async (criteria) => {
   const allVehicles = await getAllVehicles();
-  
+
   // Filtrar veículos de acordo com os critérios
   return allVehicles.filter(vehicle => {
     // Verificar correspondência em cada critério fornecido
@@ -577,7 +577,7 @@ export const searchVehicles = async (criteria) => {
       if (value && vehicle[key]) {
         const vehicleValue = vehicle[key].toString().toLowerCase();
         const searchValue = value.toString().toLowerCase();
-        
+
         if (!vehicleValue.includes(searchValue)) {
           return false;
         }
@@ -593,19 +593,19 @@ export const markAsSynced = async (ids) => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
     const store = transaction.objectStore(VEHICLES_STORE);
-    
+
     let completed = 0;
     let errors = [];
-    
+
     ids.forEach(id => {
       const getRequest = store.get(id);
-      
+
       getRequest.onsuccess = (event) => {
         const vehicle = event.target.result;
         if (vehicle) {
           vehicle.synced = true;
           const updateRequest = store.put(vehicle);
-          
+
           updateRequest.onsuccess = () => {
             completed++;
             if (completed === ids.length) {
@@ -616,7 +616,7 @@ export const markAsSynced = async (ids) => {
               }
             }
           };
-          
+
           updateRequest.onerror = (event) => {
             errors.push(`ID ${id}: ${event.target.error}`);
             completed++;
@@ -636,7 +636,7 @@ export const markAsSynced = async (ids) => {
           }
         }
       };
-      
+
       getRequest.onerror = (event) => {
         errors.push(`ID ${id}: ${event.target.error}`);
         completed++;
@@ -645,7 +645,7 @@ export const markAsSynced = async (ids) => {
         }
       };
     });
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -662,13 +662,13 @@ export const getUnsyncedVehicles = async () => {
 const getDeviceId = () => {
   // Verificar se já existe um ID de dispositivo armazenado
   let deviceId = localStorage.getItem('deviceId');
-  
+
   if (!deviceId) {
     // Gerar um novo ID de dispositivo usando timestamp + random
     deviceId = `device_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     localStorage.setItem('deviceId', deviceId);
   }
-  
+
   return deviceId;
 };
 
@@ -679,15 +679,15 @@ export const deleteVehicle = async (id) => {
     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
     const store = transaction.objectStore(VEHICLES_STORE);
     const request = store.delete(id);
-    
+
     request.onsuccess = () => {
       resolve(true);
     };
-    
+
     request.onerror = (event) => {
       reject(`Erro ao excluir veículo: ${event.target.error}`);
     };
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -701,15 +701,15 @@ export const clearAllVehicles = async () => {
     const transaction = db.transaction([VEHICLES_STORE], 'readwrite');
     const store = transaction.objectStore(VEHICLES_STORE);
     const request = store.clear();
-    
+
     request.onsuccess = () => {
       resolve(true);
     };
-    
+
     request.onerror = (event) => {
       reject(`Erro ao limpar veículos: ${event.target.error}`);
     };
-    
+
     transaction.oncomplete = () => {
       db.close();
     };
@@ -717,10 +717,10 @@ export const clearAllVehicles = async () => {
 };
 
 // popular o banco de dados
-export const prePopulateDB = async () => {  
-  
+export const prePopulateDB = async () => {
+
   await getAllVehicles();
-  
+
   // Só pré-popular se não houver veículos cadastrados
   // if (existingVehicles.length === 0) {
   //   for (const vehicle of sampleVehicles) {

@@ -2,12 +2,14 @@
 
 import Layout from '@/src/components/Layout';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Nav } from 'react-bootstrap';
 import ExcelImporter from '../src/components/ExcelImporter';
 import { getAllVehicles, deleteVehicle, clearAllVehicles } from '../src/db/indexedDB';
 
 const VehicleManagement = () => {
+    const router = useRouter();
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -63,6 +65,10 @@ const VehicleManagement = () => {
     // Função chamada quando a importação é concluída
     const handleImportComplete = () => {
         refreshVehicles();
+    };
+
+    const handleEditVehicle = (id) => {
+        router.push(`/form/${id}`);
     };
 
     return (
@@ -131,10 +137,10 @@ const VehicleManagement = () => {
                                             <thead className="table-light">
                                                 <tr>
                                                     <th>Veículo</th>
-                                                    <th>Nº</th>
+                                                    {/* <th>Nº</th> */}
                                                     <th>Equipe</th>
                                                     <th>Piloto</th>
-                                                    <th>Coleta</th>
+                                                    <th className="text-center"><span className="material-icons">fact_check</span></th>
                                                     {/* <th>Sincronizado</th> */}
                                                     <th className=" text-center" style={{ width: '40px' }}>Ações</th>
                                                 </tr>
@@ -142,8 +148,8 @@ const VehicleManagement = () => {
                                             <tbody>
                                                 {vehicles.map((vehicle) => (
                                                     <tr key={vehicle.id}>
-                                                        <td>{vehicle.vehicle}</td>
-                                                        <td>{vehicle.number}</td>
+                                                        <td>{vehicle.number} - {vehicle.vehicle}</td>
+                                                        {/* <td>{vehicle.number}</td> */}
                                                         <td>{vehicle.team}</td>
                                                         <td>{vehicle.pilot}</td>
                                                         <td className="text-center">
@@ -157,10 +163,11 @@ const VehicleManagement = () => {
                                                                     vehicle.fuelDisplacement ||
                                                                     vehicle.yearVehicDispl
                                                                     ? (
-                                                                        <span className="badge bg-success px-2">Sim</span>
+                                                                        <span className="badge bg-success px-2 text-white material-icons">check</span>
                                                                     ) : (
-                                                                        <span className="badge bg-warning text-dark px-2">Não</span>
+                                                                        <span className="badge bg-warning text-dark px-2 material-icons">schedule</span>
                                                                     )}
+
                                                         </td>
                                                         {/* <td>
                                                             {vehicle.synced ? (
@@ -170,12 +177,18 @@ const VehicleManagement = () => {
                                                             )}
                                                         </td> */}
                                                         <td className="text-center" style={{ width: "40px" }}>
-                                                            <button
-                                                                onClick={() => handleDelete(vehicle.id)}
-                                                                className="btn btn-sm btn-link text-danger"
+                                                            <small
+                                                                onClick={() => handleEditVehicle(vehicle.id)}
+                                                                className="btn btn-sm btn-link text-primary"
                                                             >
-                                                                Excluir
-                                                            </button>
+                                                                <span className="material-icons">edit_square</span>
+                                                            </small>
+                                                            <small
+                                                                onClick={() => handleDelete(vehicle.id)}
+                                                                className="btn btn-sm btn-link text-danger fs-6"
+                                                            >
+                                                                <span className="material-icons">delete</span>
+                                                            </small>
                                                         </td>
                                                     </tr>
                                                 ))}

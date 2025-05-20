@@ -48,10 +48,13 @@ export default function Home() {
         {/* <p className='fs-3 text-center text-muted opacity-75 lead mt-4 mt-md-0'>Coleta de dados Rally Carbono Neutro {new Date().getFullYear()}</p> */}
         <Accordion defaultActiveKey="1">
           <Accordion.Item eventKey="0">
-            <Accordion.Header className='text-center fw-bold'><b>{texts.tituloEvento}</b></Accordion.Header>
+            <Accordion.Header className='text-center fw-bold'>
+              {/* icone info */}
+              <i className="me-2 bi bi-info-circle"></i>
+              <small className='fw-bold'>{texts.tituloEvento}</small></Accordion.Header>
             <Accordion.Body>
               <div className='d-flex flex-column flex-md-row justify-content-center gap-4 mb-3 align-items-center'>
-                <img src="/selo_verde.png" alt="" width={150} />
+                <img src="/selo_verde_nw.png" alt="" width={150} />
                 <p className='fs-5 fw-bold text-success'>{texts.descricaoEvento}</p>
               </div>
               <hr />

@@ -80,19 +80,20 @@ const VehicleList = () => {
                 <tr>
                   <th>{texts.equipe}</th>
                   <th>{texts.veiculo}</th>
-                  <th>{texts.numero}</th>
+                  {/* <th>{texts.numero}</th> */}
                   <th>{texts.piloto}</th>
                   {/* <th>{texts.pais}</th> */}
                   {/* <th>Status</th> */}
                   {/* <th className="text-end"> </th> */}
+                  <th className="text-center"><span className="material-icons">fact_check</span></th>
                 </tr>
               </thead>
               <tbody>
                 {searchResults.map((vehicle) => (
                   <tr key={vehicle.id} onClick={() => handleEditVehicle(vehicle.id)} style={{ cursor: 'pointer' }}>
                     <td>{vehicle.team}</td>
-                    <td>{vehicle.vehicle}</td>
-                    <td>{vehicle.number}</td>
+                    <td>{<>{vehicle.number ? <><b className='badge bg-dark text-warning'>{`${vehicle.number} `}</b> | </> : ''} {vehicle.vehicle}</>}</td>
+                    {/* <td>{vehicle.number}</td> */}
                     <td>{vehicle.pilot}</td>
                     {/* <td>{vehicle.country}</td> */}
                     {/* <td>
@@ -115,6 +116,22 @@ const VehicleList = () => {
                         {texts.editar}
                       </Button>
                     </td> */}
+                    <td className="text-center">
+                      {
+                        vehicle.year ||
+                          vehicle.fuel ||
+                          vehicle.displacementConsumption ||
+                          vehicle.consumptionInRace ||
+                          vehicle.origin ||
+                          vehicle.vehicleDisplacement ||
+                          vehicle.fuelDisplacement ||
+                          vehicle.yearVehicDispl
+                          ? (
+                            <span className="badge bg-success px-2 text-white material-icons">check</span>
+                          ) : (
+                            <span className="badge bg-warning text-dark px-2 material-icons">schedule</span>
+                          )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
